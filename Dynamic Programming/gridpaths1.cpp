@@ -1,0 +1,93 @@
+#include <bits/stdc++.h> // https://cses.fi/problemset/task/1638/
+using namespace std;
+using ll=long long;
+using dd=long double;
+using vi=vector<int>;
+using vl=vector<long long>;
+using vvi=vector<vector<int>>;
+using pii=pair<int,int>;
+using pll=pair<long long,long long>;
+#define pb push_back
+#define eb emplace_back
+#define ff first
+#define ss second
+#define read(a) for(auto&b:a) cin>>b;
+#define FOR(i,n) for(ll i=0;(i)<(ll)(n);(i)++)
+#define FOR2(i,n) for(ll i=(n)-1;i>=ll(0);i--)
+#define SUM(a) accumulate((a).begin(),(a).end(),0LL)
+#define SORT(a) sort(a.begin(),a.end())
+#define RSORT(a) sort(a.rbegin(),a.rend())
+#define UNIQUE(a) sort(a.begin(),a.end());a.erase(unique(a.begin(),a.end()),a.end()); // sorting included
+#define VEC(a,n) vector<string> a(n);for(auto& b:a) cin>>b;
+#define sz size()
+#define all(x) x.begin(),x.end()
+template<class T,class S>inline bool chmax(T&a,const S&b){return(a<b?a=b,1:0);}
+template<class T,class S>inline bool chmin(T&a,const S&b){return(a>b?a=b,1:0);}
+
+bool betelgeuse=0;
+const ll MAX_N=300000;
+const ll MOD2=1000000007;
+const ll INF=1e18;
+
+struct mint {
+    inline static ll MOD = MOD2; // change
+    ll v;
+    static void set_mod(ll mod) { MOD = mod; }
+    mint() : v(0) {}
+    mint(ll x) { v = x % MOD; if(v < 0) v += MOD; }
+    mint pow(ll power) const {
+        mint res(1), base(*this);
+        while(power > 0){
+            if(power & 1) res *= base;
+            base *= base; power >>=1;
+        }
+        return res;
+    }
+    mint inv() const { return this->pow(MOD - 2); }
+    mint& operator+=(const mint& o) { v += o.v; if(v >= MOD) v -= MOD; return *this; }
+    mint& operator-=(const mint& o) { if(v < o.v) v += MOD; v -= o.v; return *this; }
+    mint& operator*=(const mint& o) { v = (__int128(v) * o.v) % MOD; return *this; }
+    mint& operator/=(const mint& o) { return (*this) *= o.inv(); }
+    mint operator-() const { return mint(0) - *this; }
+    friend mint operator+(mint a, const mint& b) { a += b; return a; }
+    friend mint operator-(mint a, const mint& b) { a -= b; return a; }
+    friend mint operator*(mint a, const mint& b) { a *= b; return a; }
+    friend mint operator/(mint a, const mint& b) { a /= b; return a; }
+    friend bool operator==(const mint& a, const mint& b) { return a.v == b.v; }
+    friend bool operator!=(const mint& a, const mint& b) { return a.v != b.v; }
+    friend ostream& operator<<(ostream& os, const mint& x) { return os << x.v; }
+    friend istream& operator>>(istream& is, mint& x) { ll tmp; is >> tmp; x = mint(tmp); return is; }
+};
+
+void solve() {
+    int n;
+    cin>>n;
+    VEC(a,n);
+    vector<vector<mint>>dp(n,vector<mint>(n));
+    FOR(i,n){
+        if (a[0][i]=='*') break;
+        dp[0][i]=1;
+    }
+    FOR(i,n){
+        if (a[i][0]=='*') break;
+        dp[i][0]=1;
+    }
+    for(int i=1;i<n;i++){
+        for(int j=1;j<n;j++){
+            if (a[i][j]=='.'){
+                dp[i][j]=dp[i-1][j]+dp[i][j-1];
+            }
+        }
+    }
+    cout<<dp[n-1][n-1]<<"\n";
+}
+
+int main() {
+    int tc=1;
+    ios::sync_with_stdio(false);cin.tie(nullptr);
+    if (betelgeuse) cin>>tc;
+    while (tc--) {
+        solve();
+    }
+    return 0;
+}
