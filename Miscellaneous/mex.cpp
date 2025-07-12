@@ -1,6 +1,6 @@
 // Time Complexity: O(n)
 template<typename T>
-T mex(vector<T>& a,int &n) {
+T mex(vector<T> &a,int &n) {
     vector<bool>seen(n+1);
     for (T &x:a) {
         if (x>=0&&x<=n) seen[x]=1;
