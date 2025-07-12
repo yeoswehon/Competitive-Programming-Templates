@@ -15,7 +15,6 @@ while(!q.empty()){
         q.push(v);
     }
 }
-
 if (res.sz!=n){ // cycle
   cout<<-1<<"\n;
     return;
