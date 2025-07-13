@@ -60,7 +60,7 @@ struct Hash {
     array<ll,K> query(int l, int r){ // 0-based, hash[l...r]
         array<ll,K> res;
         for (int k=0;k<K;k++) {
-            ll x=(h[k][r+1]-(h[k][l]*p[k][r-l+1]))%mod[k];
+            ll x=(h[k][r+1]-(h[k][l]*p[k][r-l+1]))%mod[k]; // h[k][l] spans {0,...,l-1}, so *p[k][r-l+1] makes up for the difference in amount of terms {l,...,r} => r-l+1
             if (x<0) x+=mod[k];
             res[k]=x;
         }
