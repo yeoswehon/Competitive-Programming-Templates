@@ -1,6 +1,6 @@
 // while loop
 template<typename T>
-T to_base_int(T n, int k) {
+T BK(T n, int k) {
     T r=0,p=1;
     while (n) {
         r+= p*(n%k);
@@ -12,7 +12,7 @@ T to_base_int(T n, int k) {
 
 // for loop
 template<typename T>
-T to_base_int(T n, int k) {
+T BK(T n, int k) {
     T r=0,p=1;
     for (;n;n/= k,p *= 10)
         r+= p*(n%k);
