@@ -1,5 +1,6 @@
 // Problem: Given two strings - a pattern s and a text t, determine if the pattern appears in the text and if it does, enumerate all its occurrences in  O(|s| + |t|)  time.
 // Time Complexity: O(n + m)
+
 #include <bits/stdc++.h> // https://cses.fi/problemset/task/1753/
 using namespace std;
 using ll=long long;
