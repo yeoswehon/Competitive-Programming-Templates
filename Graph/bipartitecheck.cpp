@@ -1,3 +1,4 @@
+// 0-based indexing
 template <typename T>
 bool bipartite(int n,vector<vector<T>> &adj,vi &color) {
     color.assign(n, -1);
