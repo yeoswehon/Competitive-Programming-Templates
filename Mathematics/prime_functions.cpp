@@ -6,7 +6,7 @@ void sieve(int N){ // Sieve from 1 to N (inclusive)
     for (int i=2;i*i<=N;i++) {
         if (is_prime[i]) {
             for (int j=i*i;j<=N;j+=i){
-                is_prime[j] = false;
+                is_prime[j]=0;
             }
         }
     }
