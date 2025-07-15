@@ -1,6 +1,6 @@
 vector<ll> primes;
 
-void sieve(int N){
+void sieve(int N){ // Sieve from 1 to N (inclusive)
     vector<bool> is_prime(N+1,1);
     is_prime[0]=is_prime[1]=0;
     for (int i=2;i*i<=N;i++) {
