@@ -1,3 +1,4 @@
+// Time Complexity: O(N + M)
 int N, M;
 vvi g,gt;
 vector<bool>vis;
