@@ -1,3 +1,3 @@
-My solutions to the AtCoder Educational DP Contest
+# My solutions to the AtCoder Educational DP Contest
 Link to contest: https://atcoder.jp/contests/dp
 I was bored during my Data Structures & Algorithm Tutorials, so I decided to just solve the whole contest...
