@@ -1,3 +1,4 @@
+// Time Complexity: O((V + E) Log V)
 vl dist(n,INF);
 ll s=0;
 dist[s]=0;
