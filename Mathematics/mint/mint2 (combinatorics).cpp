@@ -1,3 +1,4 @@
+// remember to mint::init(MAX_N);
 struct mint {
     inline static ll MOD = MOD; // change
     ll v;
