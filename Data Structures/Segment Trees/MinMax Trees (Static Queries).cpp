@@ -1,6 +1,6 @@
 template<typename T,class Op> // 0-based
 class SegTree{
-  T n;
+  long long n;
   vector<T>st;
   Op op;
 public:
