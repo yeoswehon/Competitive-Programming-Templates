@@ -14,7 +14,7 @@ public:
   T query(int l,int r){
     T res=Op::identity();
     for(l+=n,r+=n;l<=r;l>>=1,r>>=1){
-      if(l&1)res=op(ans,st[l++]);
+      if(l&1)res=op(res,st[l++]);
       if(r%2==0)res=op(st[r--],res);
     }
     return res;
