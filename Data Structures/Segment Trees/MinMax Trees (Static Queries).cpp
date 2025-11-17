@@ -1,12 +1,15 @@
 template<typename T,class Op> // 0-based
 class SegTree{
-  long long n;
+  long long n,N;
   vector<T>st;
   Op op;
 public:
-  SegTree(const vector<T>&a):n((T)a.size()),st(2*n,Op::identity()){
-    for(int i=0;i<n;i++)st[n+i]=a[i];
-    for(int i=n-1;i;i--)st[i]=op(st[i<<1],st[i<<1|1]);
+  SegTree(const vector<T>&a){
+    n=a.size();
+    N=1;while(N<n)N<<=1;
+    st.assign(2*N,Op::identity());
+    for(int i=0;i<n;i++)st[N+i]=a[i];
+    for(int i=N-1;i;i--)st[i]=op(st[i<<1],st[i<<1|1]);
   }
   void update(int p,T v){
     for(st[p+=n]=v;p>1;p>>=1)st[p>>1]=op(st[p],st[p^1]);
@@ -18,6 +21,26 @@ public:
       if(r%2==0)res=op(st[r--],res);
     }
     return res;
+  }
+  // [l,r], value, op, bool returns index
+  int find(int l,int r,T x,const string&op,bool rightmost){ // MAX TREE [>=, >], nearest neighbour leftmost or rightmost
+    bool sgn=(op==">");
+    return find(1,0,N-1,l,r,x,sgn,rightmost);
+  }
+private:
+  int find(int p,int L,int R,int ql,int qr,T x,bool sgn,bool rightmost){ // MAX TREE ONLY
+    if(R<ql||qr<L)return-1;
+    T v=st[p];
+    if(sgn?v<=x:v<x)return-1;
+    if(L==R)return L;
+    int m=(L+R)>>1;
+    if(!rightmost){
+      int res=find(p<<1,L,m,ql,qr,x,sgn,rightmost);
+      return res!=-1?res:find(p<<1|1,m+1,R,ql,qr,x,sgn,rightmost);
+    }else{
+      int res=find(p<<1|1,m+1,R,ql,qr,x,sgn,rightmost);
+      return res!=-1?res:find(p<<1,L,m,ql,qr,x,sgn,rightmost);
+    }
   }
 };
 
