@@ -1,6 +1,6 @@
 // remember to mint::init(MAX_N);
 struct mint {
-    inline static ll MOD = MOD; // change
+    inline static ll MOD = MOD2; // change
     ll v;
     static void set_mod(ll mod) { MOD = mod; }
     mint() : v(0) {}
@@ -37,7 +37,11 @@ struct mint {
         for(int i=MAX;i>0;i--) I[i-1]=I[i]*i;
     }
     static mint C(int n,int k){
-        if(k<0||k>n)return 0;
+        if(k<0||k>n) return 0;
         return F[n]*I[k]*I[n-k];
+    }
+    static mint fact(int n){
+        if (n<0||n>=MOD) return 0;
+        return F[n]; 
     }
 };
