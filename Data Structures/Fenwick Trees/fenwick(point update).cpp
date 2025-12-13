@@ -11,7 +11,7 @@ struct FEN{
  
     void update(int x,T v){ // change conquer
         for(;x<=n;x+=(x&(-x))){
-            ft[x]^=v;
+            ft[x]+=v;
         }
     }
     
@@ -26,12 +26,25 @@ struct FEN{
     T sum(int x){ // change conquer
         T s=T(); 
         for(;x;x-=(x&(-x))){
-            s^=ft[x];
+            s+=ft[x];
         }
         return s;
     }
  
     T query(int l, int r){ // change conquer
-        return sum(r)^sum(l-1);
+        return sum(r)-sum(l-1);
     }
+
+    // returns smallest idx (1-based) such that prefix sum >= k
+    T kth(T k){
+        T x=0;
+        for(T i=(T(1)<<__lg(n));i;i>>=1){
+            if(x+i<=n && ft[x+i]<k){
+                x+=i;
+                k-=ft[x];
+            }
+        }
+        return x+1;
+    }
+
 };
