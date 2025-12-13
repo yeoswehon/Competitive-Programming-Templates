@@ -1,12 +1,17 @@
-template<typename T=int> // 1-based
+template<typename T=ll> // 1-based
 struct FEN{
     int n;
-    vector<T> ft;
-    FEN(int m):n(m),ft(m+1,T()){}
-
-    void update(int x,T v){
+    int mx;
+    vector<T>ft;
+ 
+    FEN(int m):n(m),ft(m+1,T()) {
+        mx=1;
+        while(mx*2<=n) mx<<=1;
+    }
+ 
+    void update(int x,T v){ // change conquer
         for(;x<=n;x+=(x&(-x))){
-            ft[x]+=v;
+            ft[x]^=v;
         }
     }
     
@@ -17,16 +22,16 @@ struct FEN{
             update(i+1,a[i]);
         }
     }
-
-    T sum(int x){
+ 
+    T sum(int x){ // change conquer
         T s=T(); 
         for(;x;x-=(x&(-x))){
-            s+=ft[x];
+            s^=ft[x];
         }
         return s;
     }
-
-    T query(int l, int r){
-        return sum(r)-sum(l-1);
+ 
+    T query(int l, int r){ // change conquer
+        return sum(r)^sum(l-1);
     }
 };
