@@ -12,11 +12,11 @@ public:
     for(int i=N-1;i;i--)st[i]=op(st[i<<1],st[i<<1|1]);
   }
   void update(int p,T v){
-    for(st[p+=n]=v;p>1;p>>=1)st[p>>1]=op(st[p],st[p^1]);
+    for(st[p+=N]=v;p>1;p>>=1)st[p>>1]=op(st[p],st[p^1]);
   }
   T query(int l,int r){
     T res=Op::identity();
-    for(l+=n,r+=n;l<=r;l>>=1,r>>=1){
+    for(l+=N,r+=N;l<=r;l>>=1,r>>=1){
       if(l&1)res=op(res,st[l++]);
       if(r%2==0)res=op(st[r--],res);
     }
