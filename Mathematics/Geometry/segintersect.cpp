@@ -24,5 +24,5 @@ template<class P> bool segIntersect(P a,P b,P c,P d){
   if(o2==0 && onSegment(a,b,d))return 1;
   if(o3==0 && onSegment(c,d,a))return 1;
   if(o4==0 && onSegment(c,d,b))return 1;
-  return o1*o2<0&&o3*o4<0;
+  return o1*o2 < 0 && o3*o4 < 0;
 }
