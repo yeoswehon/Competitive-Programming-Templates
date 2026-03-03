@@ -18,19 +18,19 @@ struct Point{
   T x,y;
   explicit Point(T x=0,T y=0):x(x),y(y){}
 
-  bool operator<(const P& p)const{return x<p.x||(x==p.x&&y<p.y);}
-  bool operator==(const P& p)const{return x==p.x&&y==p.y;}
+  bool operator<(const P& p)const{return x<p.x || (x==p.x && y<p.y);}
+  bool operator==(const P& p)const{return x==p.x && y==p.y;}
 
-  P operator+(const P& p)const{return P(x+p.x,y+p.y);}
-  P operator-(const P& p)const{return P(x-p.x,y-p.y);}
-  P operator*(T d)const{return P(x*d,y*d);}
-  P operator/(T d)const{return P(x/d,y/d);}
+  P operator+(const P& p)const{return P(x + p.x, y + p.y);}
+  P operator-(const P& p)const{return P(x - p.x, y - p.y);}
+  P operator*(T d)const{return P(x * d, y * d);}
+  P operator/(T d)const{return P(x / d, y / d);}
 
-  T dot(const P& p)const{return x*p.x+y*p.y;}
-  T cross(const P& p)const{return x*p.y-y*p.x;}
-  T cross(const P& a,const P& b)const{return (a-*this).cross(b-*this);}
+  T dot(const P& p)const{return x * p.x + y * p.y;}
+  T cross(const P& p)const{return x * p.y - y * p.x;}
+  T cross(const P& a,const P& b)const{return (a - *this).cross(b - *this);}
 
-  T dist2()const{return x*x+y*y;}
+  T dist2()const{return x * x + y * y;}
   double dist()const{return sqrt((double)dist2());}
   double angle()const{return atan2((double)y,(double)x);}
 
@@ -40,7 +40,7 @@ struct Point{
 
   P rotate(double a)const{
     double c=cos(a),s=sin(a);
-    return P(x*c-y*s,x*s+y*c);
+    return P(x * c - y * s, x * s + y * c);
   }
 
   friend ostream& operator<<(ostream& os,const P& p){
